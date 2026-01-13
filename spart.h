@@ -91,7 +91,7 @@ char *legend_info[] = {
 int legend_count = 12;
 
 /* Prints Command Usage and Exit */
-int sp_spart_usage() {
+void sp_spart_usage() {
   printf(
       "\nUsage: spart [-m] [-a] "
 #ifdef __slurmdb_cluster_rec_t_defined

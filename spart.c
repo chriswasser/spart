@@ -41,16 +41,16 @@ int main(int argc, char *argv[]) {
     SLURM_VERSION_NUMBER != SLURM_VERSION_NUM(20, 2, 1)
   void **db_conn = NULL;
   slurmdb_assoc_cond_t assoc_cond;
-  List assoc_list = NULL;
-  ListIterator itr = NULL;
+  list_t * assoc_list = NULL;
+  list_itr_t * itr = NULL;
 
-  List qosn_list = NULL;
-  ListIterator itr_qosn = NULL;
+  list_t * qosn_list = NULL;
+  list_itr_t * itr_qosn = NULL;
 
   slurmdb_assoc_rec_t *assoc;
 
-  List qos_list = NULL;
-  ListIterator itr_qos = NULL;
+  list_t * qos_list = NULL;
+  list_itr_t * itr_qos = NULL;
 
   char *qos = NULL;
   char *qos2 = NULL;
@@ -601,9 +601,7 @@ int main(int argc, char *argv[]) {
         if (min_cpu > cpus) min_cpu = cpus;
         if (max_cpu < cpus) max_cpu = cpus;
 
-        slurm_get_select_nodeinfo(
-            node_buffer_ptr->node_array[k].select_nodeinfo,
-            SELECT_NODEDATA_SUBCNT, NODE_STATE_ALLOCATED, &alloc_cpus);
+        alloc_cpus = node_buffer_ptr->node_array[k].alloc_cpus;
 
         state = node_buffer_ptr->node_array[k].node_state;
         /* If gres will not show, don't run */
